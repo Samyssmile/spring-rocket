@@ -12,7 +12,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public abstract class GenericTestBootstrap<E, R extends JpaRepository<E, Integer>, S extends GenericService<E, R>> {
+public abstract class GenericTestBootstrap<E extends IEntity, R extends JpaRepository<E, Integer>, S extends GenericService<E, R>> {
 
     private static final double TOLERANCE_VARIATION = 5;
     private static final int ZERO = 0;
