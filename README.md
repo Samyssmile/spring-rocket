@@ -18,6 +18,7 @@ This is an example Stpring-Boot Project with some integrated features, so you do
 * Micrometer
 * JPA
 * Actuator
+* Logback Logging
 
 ## Clone & Try! ##
 
