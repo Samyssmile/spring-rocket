@@ -11,6 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
+import java.util.stream.IntStream;
+
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
@@ -20,9 +22,7 @@ public class DummyRepositoryIntegrationTest extends GenericTestBootstrap<DummyEn
 
     @BeforeEach
     public void beforeEach(){
-        service.save(new DummyEntity(1, "Dummy Text 1", "123456789"));
-        service.save(new DummyEntity(2, "Dummy Text 2" , "123456789"));
-        service.save(new DummyEntity(3, "Dummy Text 3", "123456789"));
+        IntStream.range(0, 100).forEach(index -> service.save(new DummyEntity(index, "Dummy Text "+index, "123456789"+index)));
     }
 
 }
