@@ -4,7 +4,7 @@ This is an example Spring-Boot Project with some integrated features, so you don
 
 ## Requirements ##
 * Java 11
-* Gradle
+* Gradle 6.5
 
 ## Implemented Features ##
 
@@ -21,6 +21,10 @@ This is an example Spring-Boot Project with some integrated features, so you don
 * Logback Logging
 
 ## Clone & Try! ##
+
+```gradlew clean assemble```
+
+```gradlew bootRun```
 
 ### Swagger ###
 Clone & Build
