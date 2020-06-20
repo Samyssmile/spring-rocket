@@ -1,10 +1,10 @@
 # spring-rocket
 
-This is an example Stpring-Boot Project with some integrated features, so you dont need to implement standard features again and again. - DRY
+This is an example Spring-Boot Project with some integrated features, so you dont need to implement standard features again and again. - DRY
 
 ## Requirements ##
 * Java 11
-* Gradle
+* Gradle 6.5
 
 ## Implemented Features ##
 
@@ -21,6 +21,10 @@ This is an example Stpring-Boot Project with some integrated features, so you do
 * Logback Logging
 
 ## Clone & Try! ##
+
+```gradlew clean assemble```
+
+```gradlew bootRun```
 
 ### Swagger ###
 Clone & Build
