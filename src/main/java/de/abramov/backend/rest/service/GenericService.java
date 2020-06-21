@@ -19,7 +19,6 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
-@Service
 public class GenericService<E extends IEntity, S extends JpaRepository<E, Integer>> {
   private Logger logger = LoggerFactory.getLogger(GenericService.class);
 

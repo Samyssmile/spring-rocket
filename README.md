@@ -19,6 +19,7 @@ This is an example Spring-Boot Project with some integrated features, so you don
 * JPA
 * Actuator
 * Logback Logging
+* i18n
 
 ## Clone & Try! ##
 
@@ -30,5 +31,5 @@ This is an example Spring-Boot Project with some integrated features, so you don
 Clone & Build
 
 Swagger URL: http://localhost:8080/api/swagger-ui.html
-You need to use ``/users/signup`` endpoint to create a user.
+You need to use ``/users/signup`` endpoint to create a user. (Port 8081 if running in dev mode)
 
