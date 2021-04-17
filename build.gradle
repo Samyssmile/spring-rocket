@@ -1,6 +1,6 @@
 plugins {
-    id 'org.springframework.boot' version '2.3.0.RELEASE'
-    id 'io.spring.dependency-management' version '1.0.9.RELEASE'
+    id 'org.springframework.boot' version '2.4.5'
+    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
     id 'java'
 }
 
@@ -28,6 +28,7 @@ dependencies {
     implementation 'org.springdoc:springdoc-openapi-core:1.1.49'
     implementation 'org.springdoc:springdoc-openapi-ui:1.1.49'
     implementation 'org.springdoc:springdoc-openapi-webflux-ui:1.1.49'
+
     implementation 'io.jsonwebtoken:jjwt:0.9.1'
     implementation 'org.modelmapper:modelmapper:1.1.0'
     implementation "com.fasterxml.jackson.core:jackson-core"
