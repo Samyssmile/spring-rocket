@@ -15,11 +15,9 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class OpenApiConfig {
 
-    @Autowired
-    private I18n i18n;
 
     @Bean
-    public OpenAPI customOpenAPI() {
+    public OpenAPI customOpenAPI(I18n i18n) {
         Info info = new Info()
             .title(i18n.getLocaleString("applications_name", Locale.ENGLISH))
             .description(

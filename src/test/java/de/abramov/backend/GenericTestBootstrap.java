@@ -1,6 +1,7 @@
 package de.abramov.backend;
 
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.util.Optional;
 import java.util.Set;
@@ -12,7 +13,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public abstract class GenericTestBootstrap<E extends IEntity, R extends JpaRepository<E, Integer>, S extends GenericService<E, R>> {
+ abstract class GenericTestBootstrap<E extends IEntity, R extends JpaRepository<E, Integer>, S extends GenericService<E, R>> {
 
     private static final double TOLERANCE_VARIATION = 5;
     private static final int ZERO = 0;
@@ -27,7 +28,7 @@ public abstract class GenericTestBootstrap<E extends IEntity, R extends JpaRepos
     protected S service;
 
     @Test
-    public void addEntryOperation() {
+     void addEntryOperation() {
         if (service != null) {
             E entry = service.findAll().stream().findFirst().get();
 
@@ -35,18 +36,17 @@ public abstract class GenericTestBootstrap<E extends IEntity, R extends JpaRepos
             service.save(entry);
 
             long existingEntriesAfterAdd = service.count();
-            assertTrue(existingEntriesAfterAdd == 1,
-                    String.format("More than one entry exists: %s", existingEntriesAfterAdd));
+            assertEquals( true,existingEntriesAfterAdd == 1, String.format("More than one entry exists: %s", existingEntriesAfterAdd));
             restoreData(dump);
         }
     }
 
     @Test
-    public void clearTableOperation() {
+     void clearTableOperation() {
         if (service != null) {
             Set<E> dump = getDumpAndDeleteAll();
             long existingEntriesAfterClear = service.count();
-            assertTrue(existingEntriesAfterClear == ZERO, String
+            assertEquals( true,existingEntriesAfterClear == ZERO, String
                     .format("DB Table not empty afte clear all operation: %s", existingEntriesAfterClear));
             restoreData(dump);
         }
@@ -54,7 +54,7 @@ public abstract class GenericTestBootstrap<E extends IEntity, R extends JpaRepos
 
     @Test
     @DisplayName(value = "Database Table is not empty")
-    public void testElementsAreAvailable() {
+     void testElementsAreAvailable() {
         if (service != null) {
             long existingEntries = service.count();
             assertTrue(existingEntries > 0, "No entries found! Pls doublecheck migration files");
@@ -63,7 +63,7 @@ public abstract class GenericTestBootstrap<E extends IEntity, R extends JpaRepos
 
     @Test
     @DisplayName(value = "Database Cache is used - Cache requests are at least faster")
-    public void testGetAllRequestIsCached() {
+     void testGetAllRequestIsCached() {
         Set<E> dump = getDumpAndDeleteAll();
 
         dump.stream().findAny().ifPresent(service::save);
@@ -75,28 +75,11 @@ public abstract class GenericTestBootstrap<E extends IEntity, R extends JpaRepos
         restoreData(dump);
     }
 
-    @Test
-    @DisplayName("Cache must be clear after a new element added")
-    public void testCacheEvictIsExecutedAfterElementAdded() {
-//        long firstRun = getNanoTimeForFindAllOperation();
-//        long secondRun = getNanoTimeForFindAllOperation();
-//
-//        assertTrue(secondRun * SPEED_MULTIPLICATOR < firstRun, "Cached request is not at least "
-//                + SPEED_MULTIPLICATOR + " times faster:" + (firstRun / secondRun));
-//
-//        Optional<E> element = getFirstElement();
-//        element.ifPresent(e ->e.setId(0));
-//        element.ifPresent(service::save);
-//
-//        long runAfterEvict = getNanoTimeForFindAllOperation();
-//
-//        assertTrue((runAfterEvict / secondRun) >= SPEED_MULTIPLICATOR, "Run after evict: " + runAfterEvict
-//                + " secondRun: " + secondRun + " first run: " + firstRun);
-    }
+
 
     @Test
     @DisplayName("Cache must be clear after an element was removed")
-    public void testCacheEvictIsExecutedAfterElementRemoved() {
+     void testCacheEvictIsExecutedAfterElementRemoved() {
         long firstRun = getNanoTimeForFindAllOperation();
 
         Optional<E> element = getFirstElement();

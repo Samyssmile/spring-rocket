@@ -3,10 +3,6 @@ package de.abramov.backend.rest.service;
 import com.google.common.collect.Sets;
 import de.abramov.backend.configuration.cache.CachingConfiguration;
 import de.abramov.backend.rest.entity.IEntity;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +13,11 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+import java.util.Set;
 
 public class GenericService<E extends IEntity, S extends JpaRepository<E, Integer>> {
   private Logger logger = LoggerFactory.getLogger(GenericService.class);

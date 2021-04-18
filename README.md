@@ -30,15 +30,19 @@ This is an example Spring-Boot Project with some integrated features, so you don
 ### Swagger ###
 Clone & Build
 
-## Try it Developer Mode ##
-Swagger URL: http://localhost:8081/api/swagger-ui.html
+## Try it in Developer Mode ##
+    Swagger URL: http://localhost:8081/api/swagger-ui.html
 You need to use ``/users/signup`` endpoint to create a user.
-As a Response you will get sometink like this.
+As a Response you will get somethink like this.
+
 ``{
 "jsonWebToken": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzdHJpbmciLCJhdXRoIjpbeyJhdXRob3JpdHkiOiJST0xFX0FETUlOIn1dLCJpYXQiOjE2MTg2ODU1NjYsImV4cCI6MTYxODY4OTE2Nn0.m4lGuZjkjKIOiSg43QunGWs2Scf3e9Yu40__OMPsZ6I"
 }``
 
-## Try it Production Mode ##
+Copy your jsonWebToken, click on Authorize and paste "Bearer YOUR_TOKEN".
 
-Swagger URL: http://localhost:8080/api/swagger-ui.html
-You need to use ``/users/signup`` endpoint to create a user.
+### Actuator
+
+    ``http://localhost:8081/actuator/health``
+
+    ``http://localhost:8081/actuator/info``

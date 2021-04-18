@@ -62,9 +62,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
   public void configure(WebSecurity web) throws Exception {
 
     if (Arrays.asList(environment.getActiveProfiles()).contains("development")) {
-      logger.info("*** Development Profile is active - disable JWT API Protection ***");
-      logger.info("*** Development Profile is active - disable JWT API Protection ***");
-      logger.info("*** Development Profile is active - disable JWT API Protection ***");
+      logger.info("*** Development Profile is active - JWT API Protection is disabled ***");
 
       // Allow swagger to be accessed without authentication
       web.ignoring()

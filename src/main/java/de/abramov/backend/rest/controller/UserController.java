@@ -52,12 +52,13 @@ public class UserController {
       value = "/signin",
       consumes = MediaType.APPLICATION_JSON_VALUE,
       produces = MediaType.APPLICATION_JSON_VALUE)
-  public ResponseEntity<TokenDTO> login(@RequestBody User user) {
+  public ResponseEntity<TokenDTO> login(@RequestBody UserDataDTO user) {
+    logger.info("Signin Request");
     Optional<String> optionalJwt = userService.signin(user.getUsername(), user.getPassword());
     if (optionalJwt.isPresent()) {
-      return new ResponseEntity<TokenDTO>(new TokenDTO(optionalJwt.get()), HttpStatus.OK);
+      return new ResponseEntity<>(new TokenDTO(optionalJwt.get()), HttpStatus.OK);
     } else {
-      return new ResponseEntity<TokenDTO>(new TokenDTO("UNAUTHORIZED"), HttpStatus.UNAUTHORIZED);
+      return new ResponseEntity<>(new TokenDTO("UNAUTHORIZED"), HttpStatus.UNAUTHORIZED);
     }
   }
 
@@ -69,8 +70,8 @@ public class UserController {
 
     Optional<String> optionalJWT = userService.signup(modelMapper.map(user, User.class));
     return optionalJWT
-        .map(o -> new ResponseEntity<TokenDTO>(new TokenDTO(optionalJWT.get()), HttpStatus.OK))
-        .orElse(new ResponseEntity<TokenDTO>(new TokenDTO(""), HttpStatus.BAD_REQUEST));
+        .map(o -> new ResponseEntity<>(new TokenDTO(optionalJWT.get()), HttpStatus.OK))
+        .orElse(new ResponseEntity<>(new TokenDTO(""), HttpStatus.BAD_REQUEST));
   }
 
   @DeleteMapping(
