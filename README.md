@@ -1,6 +1,6 @@
 # Spring-Rocket
 
-This is a Spring-Boot 2 bootstrap Project with some default features. Just clone and start build your app.
+This is a Spring-Boot 2 bootstrap Project with some default features. Just clone and start building your app.
 
 ## Requirements ##
 * Java 11
