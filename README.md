@@ -52,6 +52,15 @@ Copy your jsonWebToken, click on Authorize and paste "Bearer YOUR_TOKEN". Now yo
 
     ``http://localhost:8081/actuator/info``
 
+    ``http://localhost:8081/actuator/prometheus``
+
+#### Grafana
+You can run Grafana as a docker container. The default username, password for Grafana is admin,admin.
+You can use the startGrafana Script to run a Grafana Container, you will find that script in your commands folder.
+
+    ``http://localhost:3000/``
+    ``Login: admin - admin
+
 ### Docker
 Every modern project should have Docker support. Spring-Rocket already configures to start with Docker.
 
