@@ -9,7 +9,7 @@ version = '0.1.0-Alpha.1'
 sourceCompatibility = '11'
 
 def openApiVersion = '1.1.49'
-def junitJupterVersion = '5.5.2'
+def junitJupterVersion = '5.7.1'
 
 repositories {
     mavenCentral()
