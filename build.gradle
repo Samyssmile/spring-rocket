@@ -45,8 +45,9 @@ dependencies {
     }
     testImplementation 'io.projectreactor:reactor-test'
 
-    testImplementation('org.junit.jupiter:junit-jupiter:'+junitJupterVersion)
-    testImplementation('org.junit.jupiter:junit-jupiter-api:'+junitJupterVersion)
+    testImplementation 'org.junit.jupiter:junit-jupiter:'+junitJupterVersion
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:'+junitJupterVersion
+    testImplementation 'org.junit.jupiter:junit-jupiter-engine:'+junitJupterVersion
 
     testImplementation('org.springframework.boot:spring-boot-starter-test')
     testImplementation "org.mockito:mockito-core:3.+"
