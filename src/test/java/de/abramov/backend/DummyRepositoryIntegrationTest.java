@@ -15,8 +15,9 @@ import java.util.stream.IntStream;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 @ExtendWith(SpringExtension.class)
-@SpringBootTest
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class DummyRepositoryIntegrationTest extends GenericTestBootstrap<DummyEntity, DummyRepository, DummyService> {
+
     @Autowired
     private DummyService service;
 

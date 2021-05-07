@@ -14,6 +14,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -51,7 +52,7 @@ public class DummyController {
       })
   @GetMapping(
       value = "/dummies",
-      produces = {"application/json", "application/xml"})
+      produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
   @ResponseBody
   public ResponseEntity<Set<DummyEntity>> findAll() {
     return new ResponseEntity<>(dummyService.findAll(), HttpStatus.OK);
@@ -72,7 +73,7 @@ public class DummyController {
       })
   @GetMapping(
       value = "/{id}",
-      produces = {"application/json", "application/xml"})
+      produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
   public ResponseEntity<DummyEntity> findDummyById(
       @Parameter(description = "Id of the dummy to be obtained. Cannot be empty.", required = true)
           @PathVariable
@@ -102,7 +103,7 @@ public class DummyController {
         @ApiResponse(responseCode = "400", description = "Invalid input"),
         @ApiResponse(responseCode = "409", description = "Dummy already exists")
       })
-  @PostMapping(consumes = {"application/json", "application/xml"})
+  @PostMapping(consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
   public ResponseEntity<DummyEntity> addDummyElement(
       @Parameter(
               description = "Dummy to add. Cannot null or empty.",
