@@ -38,13 +38,13 @@ This is a Spring-Boot 2 bootstrap Project with some default features. Just clone
 
     Swagger URL: http://localhost:8081/api/swagger-ui.html
 You need to use ``/users/signup`` endpoint to create a user.
-As a Response you will get somethink like this.
+As a response you will get something like this.
 
 ``{
 "jsonWebToken": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzdHJpbmciLCJhdXRoIjpbeyJhdXRob3JpdHkiOiJST0xFX0FETUlOIn1dLCJpYXQiOjE2MTg2ODU1NjYsImV4cCI6MTYxODY4OTE2Nn0.m4lGuZjkjKIOiSg43QunGWs2Scf3e9Yu40__OMPsZ6I"
 }``
 
-Copy your jsonWebToken, click on Authorize and paste "Bearer YOUR_TOKEN". Now you are authenticated to use all endpoints.
+Copy your jsonWebToken, click on authorize and paste "Bearer YOUR_TOKEN". Now you are authenticated to use all endpoints.
 
 ### Actuator
 
@@ -56,13 +56,13 @@ Copy your jsonWebToken, click on Authorize and paste "Bearer YOUR_TOKEN". Now yo
 
 #### Grafana
 You can run Grafana as a docker container. The default username, password for Grafana is admin,admin.
-You can use the startGrafana Script to run a Grafana Container, you will find that script in your commands folder.
+You can use the "startGrafana" Script to run a Grafana Container, you will find that script in your commands folder.
 
     ``http://localhost:3000/``
     ``Login: admin - admin
 
 ### Docker
-Every modern project should have Docker support. Spring-Rocket already configures to start with Docker.
+Every modern project should have Docker support. Spring-Rocket already configured to start inside a Docker container.
 
 Build your image with
 

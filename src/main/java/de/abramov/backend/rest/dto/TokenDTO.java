@@ -1,7 +1,5 @@
 package de.abramov.backend.rest.dto;
 
-import org.springframework.hateoas.RepresentationModel;
-
 import java.util.Objects;
 
 /**

@@ -1,7 +1,5 @@
 package de.abramov.backend.configuration.security;
 
-import de.abramov.backend.rest.controller.UserController;
-import java.util.Arrays;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,12 +16,14 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import java.util.Arrays;
+
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-  private Logger logger = LoggerFactory.getLogger(UserController.class);
+  private Logger logger = LoggerFactory.getLogger(WebSecurityConfig.class);
 
   @Autowired private JwtTokenProvider jwtTokenProvider;
   @Autowired private Environment environment;
