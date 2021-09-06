@@ -1,6 +1,7 @@
 # Spring-Rocket
 
-This is a Spring-Boot 2 bootstrap Project with some default features. Just clone and start building your app.
+This is a Spring-Boot 2 bootstrap project with some cool features. Use this project for building a backend for your App or use it as a microservice foundation.
+Just clone and start building your app.
 
 ## Requirements ##
 * Java 11
@@ -20,7 +21,7 @@ This is a Spring-Boot 2 bootstrap Project with some default features. Just clone
 * Actuator
 * Logback Logging
 * i18n
-* Dockerfile
+* Docker support.
 
 ## Clone & Try! ##
 
