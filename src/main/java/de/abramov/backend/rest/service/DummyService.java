@@ -2,6 +2,7 @@ package de.abramov.backend.rest.service;
 
 import de.abramov.backend.rest.entity.DummyEntity;
 import de.abramov.backend.rest.repository.DummyRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Objects;
@@ -12,6 +13,11 @@ import java.util.Objects;
 @Service(value = "dummy-service")
 public class DummyService extends GenericService<DummyEntity, DummyRepository>{
     private final  String uuid = DummyService.class.getSimpleName();
+
+    @Autowired
+    public DummyService(DummyRepository repository) {
+        super(repository);
+    }
 
     @Override
     public int hashCode() {

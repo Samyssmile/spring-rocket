@@ -5,7 +5,6 @@ import de.abramov.backend.configuration.cache.CachingConfiguration;
 import de.abramov.backend.rest.entity.IEntity;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
@@ -22,7 +21,11 @@ import java.util.Set;
 public class GenericService<E extends IEntity, S extends JpaRepository<E, Integer>> {
   private Logger logger = LoggerFactory.getLogger(GenericService.class);
 
-  @Autowired private S repository;
+  private S repository;
+
+  public GenericService(S repository) {
+    this.repository = repository;
+  }
 
   @CacheEvict(value = CachingConfiguration.CACHE_RESOLVER_NAME, allEntries = true)
   public E save(E element) {

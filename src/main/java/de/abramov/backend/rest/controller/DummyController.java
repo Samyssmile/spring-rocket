@@ -1,5 +1,6 @@
 package de.abramov.backend.rest.controller;
 
+import de.abramov.backend.rest.dto.DummyDTO;
 import de.abramov.backend.rest.entity.DummyEntity;
 import de.abramov.backend.rest.service.DummyService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -11,6 +12,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -36,7 +38,7 @@ public class DummyController {
     private final Random generator = ThreadLocalRandom.current();
 
 
-    private final DummyService dummyService ;
+    private final DummyService dummyService;
 
     @Autowired
     public DummyController(DummyService dummyService) {
@@ -118,10 +120,13 @@ public class DummyController {
                     schema = @Schema(implementation = DummyEntity.class))
             @Valid
             @RequestBody
-                    DummyEntity element) {
+                    DummyDTO element) {
+
+        ModelMapper modelMapper = new ModelMapper();
+        DummyEntity entity = modelMapper.map(element, DummyEntity.class);
 
         return new ResponseEntity<>(
-                dummyService.save(element), new HttpHeaders(), HttpStatus.OK);
+                dummyService.save(entity), new HttpHeaders(), HttpStatus.OK);
     }
 
     @Operation(
