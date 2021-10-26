@@ -1,11 +1,14 @@
 # Spring-Rocket
 
-This is a Spring-Boot 2 bootstrap project with some cool features. Use this project for building a backend for your App or use it as a microservice foundation.
+Spring-Rocket is a preconfigured Spring-Boot 2 project with some very important and often used features. This project was built to save a lot of time on the standard features.
+
 Just clone and start building your app.
 
-## Requirements ##
+## Minimal Requirements ##
 * Java 11
 * Gradle 7.2
+* Spring-Boot 2.5.6
+
 
 ## Already implemented Features ##
 
@@ -19,7 +22,7 @@ Just clone and start building your app.
 * Micrometer
 * JPA
 * Actuator
-* Logback Logging
+* Apache log4j2 Logging
 * i18n
 * Docker support.
 
@@ -28,6 +31,8 @@ Just clone and start building your app.
 ```gradlew clean assemble```
 
 ```gradlew bootRun```
+
+```gradlew test```
 
 ### Swagger ###
 
@@ -45,7 +50,7 @@ As a response you will get something like this.
 "jsonWebToken": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzdHJpbmciLCJhdXRoIjpbeyJhdXRob3JpdHkiOiJST0xFX0FETUlOIn1dLCJpYXQiOjE2MTg2ODU1NjYsImV4cCI6MTYxODY4OTE2Nn0.m4lGuZjkjKIOiSg43QunGWs2Scf3e9Yu40__OMPsZ6I"
 }``
 
-Copy your jsonWebToken, click on authorize and paste "YOUR_TOKEN" without "Bearer" as prefix. Now you are authenticated to use all endpoints.
+Copy your jsonWebToken, click on authorize and paste "YOUR_TOKEN" without "Bearer" as prefix. Now you are authenticated and can use all endpoints.
 
 ### Actuator
 
@@ -67,8 +72,8 @@ Every modern project should have Docker support. Spring-Rocket already configure
 
 Build your image with
 
-    sudo docker build -t spring-rocket:latest .
+    docker build -t spring-rocket:latest .
 
 Run your docker image with
 
-    sudo docker run spring-rocket
+    docker run spring-rocket

@@ -5,7 +5,7 @@ plugins {
 }
 
 group = 'de.abramov'
-version = '0.1.0-Alpha.1'
+version = '1.0'
 sourceCompatibility = '11'
 
 
