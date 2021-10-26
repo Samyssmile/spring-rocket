@@ -1,5 +1,5 @@
 plugins {
-    id 'org.springframework.boot' version '2.4.5'
+    id 'org.springframework.boot' version '2.5.6'
     id 'io.spring.dependency-management' version '1.0.11.RELEASE'
     id 'java'
 }
@@ -8,33 +8,44 @@ group = 'de.abramov'
 version = '0.1.0-Alpha.1'
 sourceCompatibility = '11'
 
-def openApiVersion = '1.1.49'
-def junitJupterVersion = '5.7.1'
 
 repositories {
     mavenCentral()
 }
 
+project.ext {
+    openApiVersion = '1.1.49';
+    junitJupterVersion = '5.7.1'
+    mockitoVersion = '4.0.0'
+}
+
+configurations{
+    all {
+        exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
+    }
+}
 dependencies {
+
+
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     implementation 'org.springframework.boot:spring-boot-starter-data-rest'
     implementation 'org.springframework.boot:spring-boot-starter-hateoas'
     implementation 'org.springframework.boot:spring-boot-starter-security'
-    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation ('org.springframework.boot:spring-boot-starter-web')
     implementation 'org.springframework.boot:spring-boot-starter-actuator'
-    implementation 'org.springframework.boot:spring-boot-starter-logging'
+    implementation 'org.springframework.boot:spring-boot-starter-log4j2'
     implementation 'org.springframework.boot:spring-boot-devtools'
 
 
-    implementation 'com.google.guava:guava:30.1.1-jre'
+    implementation 'com.google.guava:guava:31.0.1-jre'
     implementation "io.micrometer:micrometer-core"
 
-    implementation 'org.springdoc:springdoc-openapi-core:'+openApiVersion
-    implementation 'org.springdoc:springdoc-openapi-ui:'+openApiVersion
-    implementation 'org.springdoc:springdoc-openapi-webflux-ui:'+openApiVersion
+    implementation 'org.springdoc:springdoc-openapi-core:' + project.ext.openApiVersion
+    implementation 'org.springdoc:springdoc-openapi-ui:' + project.ext.openApiVersion
+    implementation 'org.springdoc:springdoc-openapi-webflux-ui:' + project.ext.openApiVersion
 
     implementation 'io.jsonwebtoken:jjwt:0.9.1'
-    implementation 'org.modelmapper:modelmapper:1.1.0'
+    implementation 'org.modelmapper:modelmapper:2.4.4'
     implementation "com.fasterxml.jackson.core:jackson-core"
 
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
@@ -48,15 +59,15 @@ dependencies {
     }
     testImplementation 'io.projectreactor:reactor-test'
 
-    testImplementation('org.junit.jupiter:junit-jupiter:'+junitJupterVersion)
-    testImplementation('org.junit.jupiter:junit-jupiter-api:'+junitJupterVersion)
-    testImplementation 'org.junit.jupiter:junit-jupiter-engine:'+junitJupterVersion
+    testImplementation 'org.junit.jupiter:junit-jupiter:' + project.ext.junitJupterVersion
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:' +  project.ext.junitJupterVersion
+    testImplementation 'org.junit.jupiter:junit-jupiter-engine:' +  project.ext.junitJupterVersion
 
 
     testImplementation('org.springframework.boot:spring-boot-starter-test')
 
-    testImplementation "org.mockito:mockito-core:3.9.0"
-    testImplementation('org.mockito:mockito-junit-jupiter:3.9.0')
+    testImplementation 'org.mockito:mockito-core:'+ project.ext.mockitoVersion
+    testImplementation 'org.mockito:mockito-junit-jupiter:'+project.ext.mockitoVersion
 }
 
 test {

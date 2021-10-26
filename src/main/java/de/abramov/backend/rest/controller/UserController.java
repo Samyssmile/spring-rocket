@@ -4,7 +4,7 @@ import de.abramov.backend.rest.dto.TokenDTO;
 import de.abramov.backend.rest.dto.UserDataDTO;
 import de.abramov.backend.rest.dto.UserResponseDTO;
 import de.abramov.backend.rest.entity.User;
-import de.abramov.backend.rest.service.UserService;
+import de.abramov.backend.rest.service.AuthenticationService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
@@ -45,7 +45,7 @@ public class UserController {
 
   private Logger logger = LoggerFactory.getLogger(UserController.class);
 
-  @Autowired private UserService userService;
+  @Autowired private AuthenticationService authenticationService;
   private ModelMapper modelMapper = new ModelMapper();
 
   @PostMapping(
@@ -54,7 +54,7 @@ public class UserController {
       produces = MediaType.APPLICATION_JSON_VALUE)
   public ResponseEntity<TokenDTO> login(@RequestBody UserDataDTO user) {
     logger.info("Signin Request");
-    Optional<String> optionalJwt = userService.signin(user.getUsername(), user.getPassword());
+    Optional<String> optionalJwt = authenticationService.signin(user.getUsername(), user.getPassword());
     if (optionalJwt.isPresent()) {
       return new ResponseEntity<>(new TokenDTO(optionalJwt.get()), HttpStatus.OK);
     } else {
@@ -68,7 +68,7 @@ public class UserController {
       produces = MediaType.APPLICATION_JSON_VALUE)
   public ResponseEntity<TokenDTO> signup(@RequestBody UserDataDTO user) {
 
-    Optional<String> optionalJWT = userService.signup(modelMapper.map(user, User.class));
+    Optional<String> optionalJWT = authenticationService.signup(modelMapper.map(user, User.class));
     return optionalJWT
         .map(o -> new ResponseEntity<>(new TokenDTO(optionalJWT.get()), HttpStatus.OK))
         .orElse(new ResponseEntity<>(new TokenDTO(""), HttpStatus.BAD_REQUEST));
@@ -80,7 +80,7 @@ public class UserController {
       produces = MediaType.APPLICATION_JSON_VALUE)
   @PreAuthorize("hasRole('ROLE_ADMIN')")
   public String delete(@PathVariable String username) {
-    userService.delete(username);
+    authenticationService.delete(username);
     return username;
   }
 
@@ -91,7 +91,7 @@ public class UserController {
       produces = MediaType.APPLICATION_JSON_VALUE)
   @PreAuthorize("hasRole('ROLE_ADMIN')")
   public UserResponseDTO search(@PathVariable String username) {
-    return modelMapper.map(userService.search(username), UserResponseDTO.class);
+    return modelMapper.map(authenticationService.search(username), UserResponseDTO.class);
   }
 
   @Operation(
@@ -101,13 +101,13 @@ public class UserController {
   @GetMapping(value = "/me", produces = MediaType.APPLICATION_JSON_VALUE)
   @PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_CLIENT')")
   public UserResponseDTO whoami(HttpServletRequest req) {
-    return modelMapper.map(userService.whoami(req), UserResponseDTO.class);
+    return modelMapper.map(authenticationService.whoami(req), UserResponseDTO.class);
   }
 
   @Operation(security = {@SecurityRequirement(name = "bearer-key")})
   @GetMapping(value = "/refresh", produces = MediaType.APPLICATION_JSON_VALUE)
   @PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_CLIENT')")
   public TokenDTO refresh(HttpServletRequest req) {
-    return new TokenDTO(userService.refresh(req.getRemoteUser()));
+    return new TokenDTO(authenticationService.refresh(req.getRemoteUser()));
   }
 }
