@@ -5,7 +5,7 @@ Just clone and start building your app.
 
 ## Requirements ##
 * Java 11
-* Gradle 7.0
+* Gradle 7.2
 
 ## Already implemented Features ##
 
@@ -45,7 +45,7 @@ As a response you will get something like this.
 "jsonWebToken": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzdHJpbmciLCJhdXRoIjpbeyJhdXRob3JpdHkiOiJST0xFX0FETUlOIn1dLCJpYXQiOjE2MTg2ODU1NjYsImV4cCI6MTYxODY4OTE2Nn0.m4lGuZjkjKIOiSg43QunGWs2Scf3e9Yu40__OMPsZ6I"
 }``
 
-Copy your jsonWebToken, click on authorize and paste "Bearer YOUR_TOKEN". Now you are authenticated to use all endpoints.
+Copy your jsonWebToken, click on authorize and paste "YOUR_TOKEN" without "Bearer" as prefix. Now you are authenticated to use all endpoints.
 
 ### Actuator
 
