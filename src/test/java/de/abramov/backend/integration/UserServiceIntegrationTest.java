@@ -15,6 +15,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,13 +24,16 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 @ExtendWith(SpringExtension.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class UserServiceIntegrationtest {
+class UserServiceIntegrationTest {
 
     @Autowired
     AuthenticationService authenticationService;
 
     @Autowired
     UserController userController;
+
+    @Autowired
+    private HttpServletRequest httpServletRequest;
 
 
     @Test
@@ -66,4 +70,5 @@ public class UserServiceIntegrationtest {
         ResponseEntity<TokenDTO> signInResponse = userController.login(dummyUserDTO);
         assertEquals(HttpStatus.OK, signInResponse.getStatusCode());
     }
+
 }
