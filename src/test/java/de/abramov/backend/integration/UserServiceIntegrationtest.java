@@ -31,22 +31,39 @@ public class UserServiceIntegrationtest {
     @Autowired
     UserController userController;
 
+
     @Test
-    void testSignUpAsAdmin(){
+    void testSignUpAsAdmin() {
         List<Role> roleList = new ArrayList<>();
         roleList.add(Role.ROLE_ADMIN);
 
         UserDataDTO dummyUserDTO = new UserDataDTO();
         dummyUserDTO.setPassword("123456");
-        dummyUserDTO.setEmail("dummy@mail.de");
+        dummyUserDTO.setEmail("john@king-of-the-north.de");
         dummyUserDTO.setUsername("Jon Snow");
         dummyUserDTO.setRoles(roleList);
 
         ResponseEntity<TokenDTO> signUpResponse = userController.signup(dummyUserDTO);
         assertEquals(HttpStatus.OK, signUpResponse.getStatusCode());
-//        responseentity<tokendto> response = usercontroller.login(dummyuserdto);
-//
-//        System.out.println(response.getStatusCode());
+        ResponseEntity<TokenDTO> signInResponse = userController.login(dummyUserDTO);
+        assertEquals(HttpStatus.OK, signInResponse.getStatusCode());
+    }
 
+
+    @Test
+    void testSignUpAsClient() {
+        List<Role> roleList = new ArrayList<>();
+        roleList.add(Role.ROLE_CLIENT);
+
+        UserDataDTO dummyUserDTO = new UserDataDTO();
+        dummyUserDTO.setPassword("123456");
+        dummyUserDTO.setEmail("glen@citizen.de");
+        dummyUserDTO.setUsername("Glen the peasant");
+        dummyUserDTO.setRoles(roleList);
+
+        ResponseEntity<TokenDTO> signUpResponse = userController.signup(dummyUserDTO);
+        assertEquals(HttpStatus.OK, signUpResponse.getStatusCode());
+        ResponseEntity<TokenDTO> signInResponse = userController.login(dummyUserDTO);
+        assertEquals(HttpStatus.OK, signInResponse.getStatusCode());
     }
 }
