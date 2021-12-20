@@ -6,7 +6,7 @@ import org.springframework.util.StringUtils;
 import java.lang.reflect.Method;
 
 /**
- * Computes cache keys. Used by generic rest service to generate cache keys
+ * Computes cache keys. Used by generic rest service to generate cache keys.
  * @author Samuel Abramov
  *
  * 16.10.2019
