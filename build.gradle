@@ -1,5 +1,5 @@
 plugins {
-    id 'org.springframework.boot' version '2.6.1'
+    id 'org.springframework.boot' version '2.6.3'
     id 'io.spring.dependency-management' version '1.0.11.RELEASE'
     id 'java'
 }
@@ -14,7 +14,7 @@ repositories {
 }
 
 project.ext {
-    openApiVersion = '1.1.49';
+    openApiVersion = '1.6.4'
     junitJupterVersion = '5.8.2'
     mockitoVersion = '4.2.0'
 }
@@ -29,7 +29,7 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-data-rest'
     implementation 'org.springframework.boot:spring-boot-starter-hateoas'
     implementation 'org.springframework.boot:spring-boot-starter-security'
-    implementation ('org.springframework.boot:spring-boot-starter-web')
+    implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-actuator'
     implementation 'org.springframework.boot:spring-boot-starter-log4j2'
     implementation 'org.springframework.boot:spring-boot-devtools'
@@ -38,9 +38,8 @@ dependencies {
     implementation 'com.google.guava:guava:31.0.1-jre'
     implementation "io.micrometer:micrometer-core"
 
-    implementation 'org.springdoc:springdoc-openapi-core:' + project.ext.openApiVersion
     implementation 'org.springdoc:springdoc-openapi-ui:' + project.ext.openApiVersion
-    implementation 'org.springdoc:springdoc-openapi-webflux-ui:' + project.ext.openApiVersion
+    implementation 'org.springdoc:springdoc-openapi-webmvc-core:1.6.4'
 
     implementation 'io.jsonwebtoken:jjwt:0.9.1'
     implementation 'org.modelmapper:modelmapper:2.4.5'
