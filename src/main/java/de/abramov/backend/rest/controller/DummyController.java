@@ -130,16 +130,16 @@ public class DummyController {
     }
 
     @Operation(
-            summary = "Add 10.000 Dummy Elements",
-            description = "You can use this for checking Cache functions.",
+            summary = "Add 300 Dummy Elements",
+            description = "This is Sparta.",
             tags = {"Dummy"},
             security = {@SecurityRequirement(name = "bearer-key")})
     @PostMapping(value = "/generator")
-    public ResponseEntity<HttpStatus> add10000Elements() {
+    public ResponseEntity<HttpStatus> addDummyElements() {
 
         List<DummyEntity> listToAdd = new ArrayList<>();
 
-        for (int i = 0; i < 10000; i++) {
+        for (int i = 0; i < 300; i++) {
             listToAdd.add(
                     new DummyEntity(
                             generator.nextInt(1000000), "Some Text Counter Dummy Text: " + i, "132165443"));

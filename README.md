@@ -5,9 +5,9 @@ Spring-Rocket is a preconfigured Spring-Boot 2 project with some very important 
 Just clone and start building your app.
 
 ## Minimal Requirements ##
-* Java 11
-* Gradle 7.3.2
-* Spring-Boot 2.6.1
+* Java 17
+* Gradle 7.4.2
+* Spring-Boot 2.6.6
 
 
 ## Already implemented Features ##
@@ -58,22 +58,17 @@ Copy your jsonWebToken, click on authorize and paste "YOUR_TOKEN" without "Beare
 
     ``http://localhost:8081/actuator/info``
 
-    ``http://localhost:8081/actuator/prometheus``
-
-#### Grafana
-You can run Grafana as a docker container. The default username, password for Grafana is admin,admin.
-You can use the "startGrafana" Script to run a Grafana Container, you will find that script in your commands folder.
-
-    ``http://localhost:3000/``
-    ``Login: admin - admin
-
 ### Docker
 Every modern project should have Docker support. Spring-Rocket already configured to start inside a Docker container.
 
-Build your image with
+Build your docker image with
 
-    docker build -t spring-rocket:latest .
+    ./gradlew bootBuildImage
 
-Run your docker image with
+Run your docker image with run "${project.name}:${project.version}" e.g.
 
-    docker run spring-rocket
+    docker run spring-rocket:1.0
+
+For some fine tuning of your image you can modify the gradle task in build.gradle.
+
+    tasks.named("bootBuildImage")

@@ -5,6 +5,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 import org.springframework.core.env.Environment;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -53,17 +54,18 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     public void configure(WebSecurity web) throws Exception {
 
-        if (Arrays.asList(environment.getActiveProfiles()).contains("development")) {
-            logger.info("*** Development Profile is active - JWT API Protection is disabled ***");
+        if (!Arrays.asList(environment.getActiveProfiles()).contains("production")) {
+            logger.info("*** SWAGGER UI Enabled running not in production profile. ***");
 
-            // Allow swagger to be accessed without authentication
             web.ignoring()
-                    .antMatchers("/v3/api-docs") //
+                    .antMatchers("/v3/**") //
+                    .antMatchers("/api/v3/**") //
                     .antMatchers("/swagger-resources/**") //
                     .antMatchers("/swagger-ui.html") //
                     .antMatchers("/api/swagger-ui.html") //
                     .antMatchers("/configuration/**") //
                     .antMatchers("/public/**")
+                    .antMatchers("/api/**")
                     .antMatchers("/api/swagger-ui/*");
         }
     }

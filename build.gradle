@@ -1,12 +1,12 @@
 plugins {
-    id 'org.springframework.boot' version '2.6.1'
+    id 'org.springframework.boot' version '2.6.6'
     id 'io.spring.dependency-management' version '1.0.11.RELEASE'
     id 'java'
 }
 
 group = 'de.abramov'
 version = '1.0'
-sourceCompatibility = '11'
+sourceCompatibility = '17'
 
 
 repositories {
@@ -14,7 +14,7 @@ repositories {
 }
 
 project.ext {
-    openApiVersion = '1.1.49';
+    openApiVersion = '1.6.7';
     junitJupterVersion = '5.8.2'
     mockitoVersion = '4.2.0'
 }
@@ -38,12 +38,10 @@ dependencies {
     implementation 'com.google.guava:guava:31.0.1-jre'
     implementation "io.micrometer:micrometer-core"
 
-    implementation 'org.springdoc:springdoc-openapi-core:' + project.ext.openApiVersion
     implementation 'org.springdoc:springdoc-openapi-ui:' + project.ext.openApiVersion
-    implementation 'org.springdoc:springdoc-openapi-webflux-ui:' + project.ext.openApiVersion
 
     implementation 'io.jsonwebtoken:jjwt:0.9.1'
-    implementation 'org.modelmapper:modelmapper:2.4.5'
+    implementation 'org.modelmapper:modelmapper:3.1.0'
     implementation "com.fasterxml.jackson.core:jackson-core"
 
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
@@ -66,6 +64,27 @@ dependencies {
 
     testImplementation 'org.mockito:mockito-core:'+ project.ext.mockitoVersion
     testImplementation 'org.mockito:mockito-junit-jupiter:'+project.ext.mockitoVersion
+}
+
+springBoot {
+    buildInfo()
+}
+
+tasks.named("bootRun") {
+    mainClass = 'de.abramov.backend.BackendApplication'
+}
+
+tasks.named("bootBuildImage") {
+    imageName = "${project.name}:${project.version}"
+    publish = false // modify publishRegistry if set to TRUE
+    verboseLogging = true
+    docker {
+        publishRegistry {
+            username = "yourUsername" // provide it as environment variable for security reasons
+            password = "yourPassword" // provide it as environment variable for security reasons
+            url = "https://registry.yourDomain.com/v2" // provide it as environment variable for security reasons
+        }
+    }
 }
 
 test {
