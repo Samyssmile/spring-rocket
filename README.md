@@ -7,7 +7,7 @@ Just clone and start building your app.
 ## Minimal Requirements ##
 * Java 17
 * Gradle 7.4.2
-* Spring-Boot 2.6.6
+* Spring-Boot 2.6.7
 
 
 ## Already implemented Features ##
@@ -61,14 +61,22 @@ Copy your jsonWebToken, click on authorize and paste "YOUR_TOKEN" without "Beare
 ### Docker
 Every modern project should have Docker support. Spring-Rocket already configured to start inside a Docker container.
 
-Build your docker image with
+#### Image Packer
+Build your docker image with (easy but slow, no dockerfile required)
 
     ./gradlew bootBuildImage
 
-Run your docker image with run "${project.name}:${project.version}" e.g.
-
-    docker run spring-rocket:1.0
-
-For some fine tuning of your image you can modify the gradle task in build.gradle.
+For some fine tuning of your image you need to modify the gradle task in build.gradle.
 
     tasks.named("bootBuildImage")
+#### Common way
+Instead of a packer,  use this command instead
+
+    docker build -t spring-rocket:latest .
+
+
+Run your docker image with run "${project.name}:${project.version}" e.g.
+
+    docker run spring-rocket:latest
+
+
