@@ -9,7 +9,6 @@ class BackendApplicationTests {
 
     @Test
     void contextLoads() {
-        // your test
         AssertionErrors.assertTrue("Tests run...", true);
     }
 

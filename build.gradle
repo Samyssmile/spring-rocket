@@ -1,11 +1,11 @@
 plugins {
-    id 'org.springframework.boot' version '2.6.6'
+    id 'org.springframework.boot' version '2.6.7'
     id 'io.spring.dependency-management' version '1.0.11.RELEASE'
     id 'java'
 }
 
 group = 'de.abramov'
-version = '1.0'
+version = '1.0.1'
 sourceCompatibility = '17'
 
 
@@ -16,7 +16,7 @@ repositories {
 project.ext {
     openApiVersion = '1.6.7';
     junitJupterVersion = '5.8.2'
-    mockitoVersion = '4.2.0'
+    mockitoVersion = '4.5.1'
 }
 
 configurations{
@@ -35,7 +35,7 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-devtools'
 
 
-    implementation 'com.google.guava:guava:31.0.1-jre'
+    implementation 'com.google.guava:guava:31.1-jre'
     implementation "io.micrometer:micrometer-core"
 
     implementation 'org.springdoc:springdoc-openapi-ui:' + project.ext.openApiVersion
