@@ -24,7 +24,8 @@ Just clone and start building your app.
 * Actuator
 * Apache log4j2 Logging
 * i18n
-* Docker support.
+* Docker support
+* Liquibase 
 
 ## Clone & Try! ##
 
@@ -79,4 +80,9 @@ Run your docker image with run "${project.name}:${project.version}" e.g.
 
     docker run spring-rocket:latest
 
+### Liquibase
+You need to enable Liquibase with following command.
 
+    spring.liquibase.enabled=true
+
+You will find a blueprint in applicaiton-development.properties

@@ -37,7 +37,7 @@ dependencies {
 
     implementation 'com.google.guava:guava:31.1-jre'
     implementation "io.micrometer:micrometer-core"
-
+    implementation 'org.liquibase:liquibase-core:4.9.1'
     implementation 'org.springdoc:springdoc-openapi-ui:' + project.ext.openApiVersion
 
     implementation 'io.jsonwebtoken:jjwt:0.9.1'
@@ -48,7 +48,8 @@ dependencies {
 
     runtimeOnly 'io.micrometer:micrometer-registry-prometheus'
     runtimeOnly 'org.hsqldb:hsqldb'
-
+    implementation 'mysql:mysql-connector-java:8.0.29'
+    implementation 'org.mariadb.jdbc:mariadb-java-client:3.0.4'
 
     testImplementation('org.springframework.boot:spring-boot-starter-test') {
         exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
@@ -58,7 +59,6 @@ dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter:' + project.ext.junitJupterVersion
     testImplementation 'org.junit.jupiter:junit-jupiter-api:' +  project.ext.junitJupterVersion
     testImplementation 'org.junit.jupiter:junit-jupiter-engine:' +  project.ext.junitJupterVersion
-
 
     testImplementation('org.springframework.boot:spring-boot-starter-test')
 

@@ -1,0 +1,15 @@
+# liquibase blueprint: adds a new column dummy_text to table dummy_entity
+databaseChangeLog:
+  - changeSet:
+      id: add-column-DummyText
+      author: Tristate
+      changes:
+        - addColumn:
+            tableName: dummy_entity
+            columns:
+              - column:
+                  name: dummy_boolean
+                  type: boolean
+                  defaultValue: "false"
+                  defaultOnNull: true
+
