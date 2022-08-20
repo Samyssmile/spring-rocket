@@ -147,4 +147,10 @@ public class DummyController {
         dummyService.saveAll(listToAdd);
         return new ResponseEntity<>(HttpStatus.OK);
     }
+
+    @GetMapping(value = "/random")
+    public ResponseEntity<List<DummyEntity>> getRandomDummyEntites(){
+        List<DummyEntity> randomDummyEntites=  dummyService.findTop10ByOrderByIdDesc();
+        return  new ResponseEntity<>(randomDummyEntites,HttpStatus.OK);
+    }
 }

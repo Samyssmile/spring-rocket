@@ -5,6 +5,7 @@ import de.abramov.backend.rest.repository.DummyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -39,4 +40,7 @@ public class DummyService extends GenericService<DummyEntity, DummyRepository>{
         return Objects.equals(uuid, other.uuid);
     }
 
+    public List<DummyEntity> findTop10ByOrderByIdDesc() {
+        return getRepository().findTop10ByOrderByIdDesc();
+    }
 }
